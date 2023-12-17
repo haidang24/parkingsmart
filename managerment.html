@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Các thẻ meta và tiêu đề còn lại -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="style1.css" />
+  </head>
+  <body>
+    <!-- Nội dung trang -->
+    <section class="services" id="services">
+        <div class="heading">
+            <span>Welcome to Tower Controls -Chào Mừng Đến Với Quyền Quản Trị Tháp</span>
+            <h1>Easy Controls - In Out Slots Parking <br>Logical Operation </h1>
+            <img class="moving-image" src="img/puma1.png" alt="Description of the image">
+        </div>
+        <div class="services-container">
+            <div class="box">
+                <div class="box-img">
+                    <!-- Thay đổi giá trị của thuộc tính src dưới đây -->
+                    <img id="carImage1" src="img/volk_1.jpg" alt="">
+                </div>
+                <p>2023</p>
+                <h3>Location 1</h3>
+                <h2>$5850 | $55 <span>Week/day</span> </h2>
+                <a href="#form" class="btn parking-car-btn1">Parking Car</a>
+                <a href="#form" class="btn get-car-btn1">Get Car</a>
+            </div>
+    
+            <div class="box">
+                <div class="box-img">
+                    <!-- Thay đổi giá trị của thuộc tính src dưới đây -->
+                    <img id="carImage2" src="img/volk_1.jpg" alt="">
+                </div>
+                <p>2023</p>
+                <h3>Location 2</h3>
+                <h2>$5850 | $55 <span>Week/day</span> </h2>
+                <a href="#form" class="btn parking-car-btn2">Parking Car</a>
+                <a href="#form" class="btn get-car-btn2">Get Car</a>
+            </div>
+    
+            <div class="box">
+                <div class="box-img">
+                    <!-- Thay đổi giá trị của thuộc tính src dưới đây -->
+                    <img id="carImage3" src="img/volk_1.jpg" alt="">
+                </div>
+                <p>2023</p>
+                <h3>Location 3</h3>
+                <h2>$5850 | $55 <span>Week/day</span> </h2>
+                <a href="#form" class="btn parking-car-btn3">Parking Car</a>
+                <a href="#form" class="btn get-car-btn3">Get Car</a>
+            </div>
+    
+            <div class="box">
+                <div class="box-img">
+                    <!-- Thay đổi giá trị của thuộc tính src dưới đây -->
+                    <img id="carImage4" src="img/volk_1.jpg" alt="">
+                </div>
+                <p>2023</p>
+                <h3>Location 4</h3>
+                <h2>$5850 | $55 <span>Week/day</span> </h2>
+                <a href="#form" class="btn parking-car-btn4">Parking Car</a>
+                <a href="#form" class="btn get-car-btn4">Get Car</a>
+            </div>
+    
+            <div class="box">
+                <div class="box-img">
+                    <!-- Thay đổi giá trị của thuộc tính src dưới đây -->
+                    <img id="carImage5" src="img/volk_1.jpg" alt="">
+                </div>
+                <p>2023</p>
+                <h3>Location 5</h3>
+                <h2>$5850 | $55 <span>Week/day</span> </h2>
+                <a href="#form" class="btn parking-car-btn5">Parking Car</a>
+                <a href="#form" class="btn get-car-btn5">Get Car</a>
+            </div>
+    
+            <div class="box">
+                <div class="box-img">
+                    <!-- Thay đổi giá trị của thuộc tính src dưới đây -->
+                    <img id="carImage6" src="img/volk_1.jpg" alt="">
+                </div>
+                <p>2023</p>
+                <h3>Location 6</h3>
+                <h2>$5850 | $55 <span>Week/day</span> </h2>
+                <a href="#form" class="btn parking-car-btn6">Parking Car</a>
+                <a href="#form" class="btn get-car-btn6">Get Car</a>
+            </div>
+    
+    
+            <div class="box">
+                <div class="box-img">
+                    <!-- Thay đổi giá trị của thuộc tính src dưới đây -->
+                    <img id="carImage7" src="img/volk_1.jpg" alt="">
+                </div>
+                <p>2023</p>
+                <h3>Location 7</h3>
+                <h2>$5850 | $55 <span>Week/day</span> </h2>
+                <a href="#form" class="btn parking-car-btn7">Parking Car</a>
+                <a href="#form" class="btn get-car-btn7">Get Car</a>
+            </div>
+    
+    
+            <div class="box">
+                <div class="box-img">
+                    <!-- Thay đổi giá trị của thuộc tính src dưới đây -->
+                    <img id="carImage8" src="img/volk_1.jpg" alt="">
+                </div>
+                <p>2023</p>
+                <h3>Location 8</h3>
+                <h2>$5850 | $55 <span>Week/day</span> </h2>
+                <a href="#form" class="btn parking-car-btn8">Parking Car</a>
+                <a href="#form" class="btn get-car-btn8">Get Car</a>
+            </div>
+
+            <script>
+                $(document).ready(function () {
+                    $('.parking-car-btn1').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('1');
+                        $('#name').val('10');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage1').attr('src', 'img/car1.jpg');
+                    });
+    
+                    $('.get-car-btn1').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('1');
+                        $('#name').val('12');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage1').attr('src', 'img/volk_1.jpg');
+                    });
+                });
+    
+                $(document).ready(function () {
+                    $('.parking-car-btn2').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('2');
+                        $('#name').val('10');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage2').attr('src', 'img/car1.jpg');
+                    });
+    
+                    $('.get-car-btn2').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('2');
+                        $('#name').val('12');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage2').attr('src', 'img/volk_1.jpg');
+                    });
+                });
+    
+                $(document).ready(function () {
+                    $('.parking-car-btn3').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('3');
+                        $('#name').val('10');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage3').attr('src', 'img/car1.jpg');
+                    });
+    
+                    $('.get-car-btn3').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('3');
+                        $('#name').val('12');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage3').attr('src', 'img/volk_1.jpg');
+                    });
+                });
+    
+                $(document).ready(function () {
+                    $('.parking-car-btn4').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('4');
+                        $('#name').val('10');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage4').attr('src', 'img/car1.jpg');
+                    });
+    
+                    $('.get-car-btn4').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('4');
+                        $('#name').val('12');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage4').attr('src', 'img/volk_1.jpg');
+                    });
+                });
+
+
+                $(document).ready(function () {
+                    $('.parking-car-btn5').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('5');
+                        $('#name').val('10');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage5').attr('src', 'img/car1.jpg');
+                    });
+    
+                    $('.get-car-btn5').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('5');
+                        $('#name').val('12');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage5').attr('src', 'img/volk_1.jpg');
+                    });
+                });
+
+
+                $(document).ready(function () {
+                    $('.parking-car-btn6').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('6');
+                        $('#name').val('10');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage6').attr('src', 'img/car1.jpg');
+                    });
+    
+                    $('.get-car-btn6').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('6');
+                        $('#name').val('12');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage6').attr('src', 'img/volk_1.jpg');
+                    });
+                });
+
+
+                $(document).ready(function () {
+                    $('.parking-car-btn7').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('7');
+                        $('#name').val('10');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage7').attr('src', 'img/car1.jpg');
+                    });
+    
+                    $('.get-car-btn7').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('7');
+                        $('#name').val('12');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage7').attr('src', 'img/volk_1.jpg');
+                    });
+                });
+
+                $(document).ready(function () {
+                    $('.parking-car-btn8').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('8');
+                        $('#name').val('10');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage8').attr('src', 'img/car1.jpg');
+                    });
+    
+                    $('.get-car-btn8').on('click', function () {
+                        // Điền dữ liệu vào các trường
+                        $('#roll').val('8');
+                        $('#name').val('12');
+    
+                        // Thay đổi hình ảnh
+                        $('#carImage8').attr('src', 'img/volk_1.jpg');
+                    });
+                });
+
+
+                
+            </script>
+            <section class="form" id="form">
+            <div class="form">
+                Location: <input type="text" name="RollNo" id="roll" /> <br /><br />
+                Your Name: <input type="text" name="name" id="name" /> <br /><br />
+            </div>
+            </section>
+            <div class="buttons">
+                <button id="insert">Except</button>
+                <button id="close">Close</button>
+              </div>
+
+              <script>
+                document.getElementById("close").addEventListener("click", function() {
+                    // Redirect to index.html when the "Close" button is clicked
+                    window.location.href = "index.html";
+                });
+            </script>
+
+
+            <style>
+                .moving-image {
+                    width: 150px;
+                    position: absolute;
+                    top: 30px; /* Điều chỉnh giá trị top để di chuyển lên hoặc xuống */
+                    right: 20px; /* Điều chỉnh giá trị right để di chuyển sang bên phải hoặc trái */
+                }  
+            </style>
+      
+        </div>
+    </section>
+
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase.js"></script>
+
+    <script src="./fireConfig.js"></script>
+
+    <script src="./controls.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+  </body>
+</html>

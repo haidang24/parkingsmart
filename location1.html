@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Location 1</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- jQuery UI JS -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="style1.css" />
+  </head>
+  <body>
+
+    <section class="home" id="home">
+      <div class="text">
+          <h1> <span>Auto Parking</span> System<br> Solution®</h1>
+          <p>Parking Solution, Sevices and more...</p>
+      </div>
+
+      <div class="container">
+        <h2>Please! Choose Slots 1 Parking Car</h2>
+        <div class="form">
+          Location: <input type="text" name="RollNo" id="RollNo" /> <br /><br />
+          ID: <input type="text" name="Id" id="ID" /> <br /><br />
+          Your Name:&nbsp; <input type="text" name="name" id="Name" /> <br /><br />
+          License: <input type="text" name="gender" id="LicensePlates" /> <br /><br />
+          Address: <input type="text" name="Address" id="Status" /> <br /><br />
+          Datein: <input type="text" name="Datein" id="TimeIn" /> <br /><br />
+          Dateout: <input type="text" name="Dateout" id="TimeOut" /> <br /><br />
+        </div>
+        <div class="buttons">
+          <button id="insert">Insert</button>
+          <button id="read">Read</button>
+          <button id="update">Update</button>
+          <button id="delete">Delete</button>
+          <button id="close">Close</button>
+        </div>
+    </div>
+</section>
+<section class="money" id="money">
+        <div class="money-container">
+            <h2>Tạm Tính</h2>
+            <label for="ngayDen">Ngày Đến:</label>
+            <input type="text" id="ngayDen">
+            <label for="ngayDi">Ngày Đi:</label>
+            <input type="text" id="ngayDi">
+            <p id="soNgay">Số Ngày Chọn: 0</p>
+            <p id="tongTien">Tổng Tiền: 0</p>
+          </div>
+</section>
+    <script>
+        $(function() {
+            // Kích thước widget datepicker
+            $.datepicker.setDefaults({
+                dateFormat: 'dd/mm/yy',
+                prevText: '<',
+                nextText: '>',
+                dayNamesMin: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+                monthNamesShort: ['Th1', 'Th2', 'Th3', 'Th4', 'Th5', 'Th6', 'Th7', 'Th8', 'Th9', 'Th10', 'Th11', 'Th12']
+            });
+
+            // Biến giá tiền cho mỗi ngày
+            var giaTienPerNgay = 30000;
+
+            // Ngày đến
+            $("#ngayDen").datepicker({
+                onSelect: function(selectedDate) {
+                    $("#ngayDi").datepicker("option", "minDate", selectedDate);
+                    updateSoNgay();
+                }
+            });
+
+            // Ngày đi
+            $("#ngayDi").datepicker({
+                onSelect: function(selectedDate) {
+                    $("#ngayDen").datepicker("option", "maxDate", selectedDate);
+                    updateSoNgay();
+                }
+            });
+
+            // Cập nhật số ngày và tổng tiền khi có sự thay đổi
+            function updateSoNgay() {
+                var ngayDen = $("#ngayDen").datepicker("getDate");
+                var ngayDi = $("#ngayDi").datepicker("getDate");
+
+                if (ngayDen && ngayDi) {
+                    var soNgay = Math.ceil((ngayDi - ngayDen) / (24 * 60 * 60 * 1000));
+                    var tongTien = soNgay * giaTienPerNgay;
+
+                    // Định dạng số tiền với dấu chấm ngăn cách
+                    var formattedTongTien = formatNumberToCurrency(tongTien);
+
+                    $("#soNgay").text("Số Ngày Chọn: " + soNgay);
+                    $("#tongTien").text("Tổng Tiền: " + formattedTongTien + "VNĐ");
+                }
+            }
+
+            // Hàm định dạng số tiền thành chuỗi với dấu chấm ngăn cách
+            function formatNumberToCurrency(number) {
+                return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+        });
+    </script>
+        
+  <!-- Thêm thư viện jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Thêm thư viện jQuery UI -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase.js"></script>
+
+    <script src="./fireConfig.js"></script>
+
+    <script src="./myscript.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+  </body>
+</html>
