@@ -1,124 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Location 7</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <!-- jQuery UI CSS -->
-      <link rel="icon" href="./img/Volkswagen_Logo_till_1995.svg.png">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <!-- jQuery UI JS -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="style1.css" />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Reservation</title>
+    <!-- Thêm Bootstrap CSS (chỉ để trang trí) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="hehehe.css">
+</head>
+<body>
 
-    <section class="home" id="home">
-      <div class="text">
-          <h1> <span>Auto Parking</span> System<br> Solution®</h1>
-          <p>Parking Solution, Sevices and more...</p>
-      </div>
+<div class="container mt-3">
+    <!-- Form để thêm mới dữ liệu lịch sử -->
+    <h2>Please! Choose Parking Slot 7</h2>
+    <div>
+        <label for="DateIn">Date In:</label>
+        <input type="date" id="DateIn" required onchange="updateTotalAmount()"><br>
 
-      <div class="container">
-        <h2>Please! Choose Slots 7 Parking Car</h2>
-        <div class="form">
-          Location: <input type="text" name="RollNo" id="RollNo" /> <br /><br />
-          ID: <input type="text" name="Id" id="ID" /> <br /><br />
-          Your Name:&nbsp; <input type="text" name="name" id="Name" /> <br /><br />
-          License: <input type="text" name="gender" id="LicensePlates" /> <br /><br />
-          Address: <input type="text" name="Address" id="Status" /> <br /><br />
-          Datein: <input type="text" name="Datein" id="TimeIn" /> <br /><br />
-          Dateout: <input type="text" name="Dateout" id="TimeOut" /> <br /><br />
-        </div>
-        <div class="buttons">
-          <button id="insert">Insert</button>
-          <button id="read">Read</button>
-          <button id="update">Update</button>
-          <button id="delete">Delete</button>
-          <button id="close">Close</button>
-        </div>
+        <label for="DateOut">Date Out:</label>
+        <input type="date" id="DateOut" required onchange="updateTotalAmount()"><br>
+
+        <!-- Hiển thị số tiền tạm tính -->
+        <div id="totalAmount"></div>
+
+        <label for="ID">ID:</label>
+        <input type="text" id="ID" required><br>
+
+        <label for="LicensePlates">License Plates:</label>
+        <input type="text" id="LicensePlates" required><br>
+
+        <label for="Location">Location:</label>
+        <input type="text" id="Location" required><br>
+
+        <label for="Status">Status:</label>
+        <input type="text" id="Status" required><br>
+
+        <button onclick="addHistoryData()">Reservations</button>
+        <button id="close">Close</button>
     </div>
-</section>
-<section class="money" id="money">
-        <div class="money-container">
-            <h2>Tạm Tính</h2>
-            <label for="ngayDen">Ngày Đến:</label>
-            <input type="text" id="ngayDen">
-            <label for="ngayDi">Ngày Đi:</label>
-            <input type="text" id="ngayDi">
-            <p id="soNgay">Số Ngày Chọn: 0</p>
-            <p id="tongTien">Tổng Tiền: 0</p>
-          </div>
-</section>
-    <script>
-        $(function() {
-            // Kích thước widget datepicker
-            $.datepicker.setDefaults({
-                dateFormat: 'dd/mm/yy',
-                prevText: '<',
-                nextText: '>',
-                dayNamesMin: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
-                monthNamesShort: ['Th1', 'Th2', 'Th3', 'Th4', 'Th5', 'Th6', 'Th7', 'Th8', 'Th9', 'Th10', 'Th11', 'Th12']
-            });
+</div>
 
-            // Biến giá tiền cho mỗi ngày
-            var giaTienPerNgay = 30000;
+<script>
+    document.getElementById("close").addEventListener("click", function() {
+        // Redirect to index.html when the "Close" button is clicked
+        window.location.href = "index.html";
+    });
+</script>
 
-            // Ngày đến
-            $("#ngayDen").datepicker({
-                onSelect: function(selectedDate) {
-                    $("#ngayDi").datepicker("option", "minDate", selectedDate);
-                    updateSoNgay();
-                }
-            });
+<!-- Thêm Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
-            // Ngày đi
-            $("#ngayDi").datepicker({
-                onSelect: function(selectedDate) {
-                    $("#ngayDen").datepicker("option", "maxDate", selectedDate);
-                    updateSoNgay();
-                }
-            });
+<!-- Khởi tạo cấu hình Firebase -->
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyA43Hde625yMEu7q82kw4_ddHqwNigYvJQ",
+        authDomain: "conect-to-firebase.firebaseapp.com",
+        databaseURL: "https://conect-to-firebase-default-rtdb.firebaseio.com",
+        projectId: "conect-to-firebase",
+        storageBucket: "conect-to-firebase.appspot.com",
+        messagingSenderId: "557246254108",
+        appId: "1:557246254108:web:9dd705ba70c7da9427e3d9",
+        };
 
-            // Cập nhật số ngày và tổng tiền khi có sự thay đổi
-            function updateSoNgay() {
-                var ngayDen = $("#ngayDen").datepicker("getDate");
-                var ngayDi = $("#ngayDi").datepicker("getDate");
+    // Khởi tạo Firebase
+    firebase.initializeApp(firebaseConfig);
 
-                if (ngayDen && ngayDi) {
-                    var soNgay = Math.ceil((ngayDi - ngayDen) / (24 * 60 * 60 * 1000));
-                    var tongTien = soNgay * giaTienPerNgay;
+    // Lấy reference đến cơ sở dữ liệu
+    var database = firebase.database();
+</script>
 
-                    // Định dạng số tiền với dấu chấm ngăn cách
-                    var formattedTongTien = formatNumberToCurrency(tongTien);
+<!-- Script để thêm dữ liệu vào Firebase -->
+<script>
+    function addHistoryData() {
+        var ID = document.getElementById("ID").value;
+        var LicensePlates = document.getElementById("LicensePlates").value;
+        var Location = document.getElementById("Location").value;
+        var Status = document.getElementById("Status").value;
+        var DateIn = document.getElementById("DateIn").value;
+        var DateOut = document.getElementById("DateOut").value;
 
-                    $("#soNgay").text("Số Ngày Chọn: " + soNgay);
-                    $("#tongTien").text("Tổng Tiền: " + formattedTongTien + "VNĐ");
-                }
-            }
+        // Kiểm tra xem có giá trị nào trống không
+        if (!ID || !LicensePlates || !Location || !Status || !DateIn || !DateOut) {
+            alert("Please fill in all fields.");
+            return;
+        }
 
-            // Hàm định dạng số tiền thành chuỗi với dấu chấm ngăn cách
-            function formatNumberToCurrency(number) {
-                return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-            }
+        // Tính số tiền tạm tính
+        var totalAmount = calculateTotalAmount(DateIn, DateOut);
+
+        // Lấy reference đến "History" trong cơ sở dữ liệu Firebase
+        var historyRef = database.ref("History");
+
+        // Tạo một key mới cho dữ liệu lịch sử
+        var newHistoryRef = historyRef.child(ID);
+
+        // Ghi dữ liệu mới vào Firebase trong trường "History"
+        newHistoryRef.set({
+            ID: ID,
+            LicensePlates: LicensePlates,
+            Location: Location,
+            Status: Status,
+            TimeIn: DateIn,
+            TimeOut: DateOut,
         });
-    </script>
-        
-  <!-- Thêm thư viện jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<!-- Thêm thư viện jQuery UI -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        // Lấy reference đến "datcho" trong cơ sở dữ liệu Firebase
+        var datchoRef = database.ref("datcho");
 
-    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase.js"></script>
+        // Tạo một key mới cho dữ liệu lịch sử trong trường "datcho"
+        var newDatchoRef = datchoRef.child(Location);
 
-    <script src="./fireConfig.js"></script>
+        // Ghi dữ liệu mới vào Firebase trong trường "datcho"
+        newDatchoRef.set({
+            ID: ID,
+            LicensePlates: LicensePlates,
+            Location: Location,
+            Status: Status,
+            DateIn: DateIn,
+            DateOut: DateOut,
+        });
 
-    <script src="./myscript.js"></script>
-    <link rel="stylesheet" href="style.css">
-    
-  </body>
+        alert("Reservation added successfully with ID: " + ID);
+
+        // Xóa dữ liệu trong các input
+        clearFormInputs();
+    }
+
+    // Hàm tính số tiền tạm tính dựa trên DateIn và DateOut
+    function calculateTotalAmount(dateIn, dateOut) {
+        // Giả sử mỗi ngày có giá là $30
+        var pricePerDay = 30;
+
+        // Chuyển đổi chuỗi ngày thành đối tượng Date
+        var dateInObj = new Date(dateIn);
+        var dateOutObj = new Date(dateOut);
+
+        // Tính số ngày giữa hai ngày
+        var timeDiff = dateOutObj - dateInObj;
+        var daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+        // Tính số tiền tạm tính
+        var totalAmount = daysDiff * pricePerDay;
+
+        return totalAmount;
+    }
+
+    // Hàm được gọi khi có sự thay đổi trong các trường DateIn và DateOut
+    function updateTotalAmount() {
+        // Lấy giá trị từ các trường DateIn và DateOut
+        var dateIn = document.getElementById("DateIn").value;
+        var dateOut = document.getElementById("DateOut").value;
+
+        // Tính và hiển thị số tiền tạm tính
+        var totalAmount = calculateTotalAmount(dateIn, dateOut);
+        document.getElementById("totalAmount").innerText = "Total Amount: $" + totalAmount;
+    }
+
+    // Hàm xóa dữ liệu trong các input
+    function clearFormInputs() {
+        document.getElementById("ID").value = "";
+        document.getElementById("LicensePlates").value = "";
+        document.getElementById("Location").value = "";
+        document.getElementById("Status").value = "";
+        document.getElementById("DateIn").value = "";
+        document.getElementById("DateOut").value = "";
+        document.getElementById("totalAmount").innerText = ""; // Xóa hiển thị số tiền tạm tính
+    }
+</script>
+
+<!-- Thêm Bootstrap JS (chỉ để trang trí) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
 </html>

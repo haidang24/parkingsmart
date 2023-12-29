@@ -12,7 +12,7 @@
 
 <div class="container mt-3">
     <!-- Form để thêm mới dữ liệu lịch sử -->
-    <h2>Please! Choose Parking Slot 2</h2>
+    <h2>Please! Choose Parking Slot 1</h2>
     <div>
         <label for="DateIn">Date In:</label>
         <input type="date" id="DateIn" required onchange="updateTotalAmount()"><br>
@@ -36,16 +36,8 @@
         <input type="text" id="Status" required><br>
 
         <button onclick="addHistoryData()">Reservations</button>
-        <button id="close">Close</button>
     </div>
 </div>
-
-<script>
-    document.getElementById("close").addEventListener("click", function() {
-        // Redirect to index.html when the "Close" button is clicked
-        window.location.href = "index.html";
-    });
-</script>
 
 <!-- Thêm Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>

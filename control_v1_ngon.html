@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Panel</title>
+    <!-- Thêm thư viện Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <style>
+
+
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url("img/backgroud_web.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff; /* Text color for the entire body */
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .app-stores {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .app-stores img {
+            width: 100px; /* Adjust the width of the app store icons */
+            margin: 0 10px;
+        }
+
+        div {
+            text-align: center;
+        }
+
+        button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: transform 0.3s ease-in-out;
+            color: #fff; /* Text color for buttons */
+            margin-top: 600px;
+        }
+
+        #toggleButton {
+            background-color: #008CBA;
+            background-image: url('up_arrow.png'); /* Đường dẫn đến hình ảnh cho nút UP */
+        }
+
+        #btnOnId_01, #btnOffId_01 {
+            background-color: #008CBA;
+            background-image: url('forward_arrow.png'); /* Đường dẫn đến hình ảnh cho nút FORWARD */
+        }
+
+        #button1, #button2, #button3 {
+            background-color: #008CBA;
+            background-image: url('down_arrow.png'); /* Đường dẫn đến hình ảnh cho nút DOWN */
+        }
+
+        /* Hiệu ứng di chuyển khi nút được nhấn xuống */
+        button:active {
+            transform: translateY(5px);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button id="toggleButton" onmousedown="setButtonValue('Up')" onmouseup="setButtonValue('false')">UP</button>
+        <button id="btnOnId_01" onmousedown="setButtonValue('Forward')" onmouseup="setButtonValue('false')">FORWARD</button>
+        <button id="btnOffId_01" onmousedown="setButtonValue('Reverse')" onmouseup="setButtonValue('false')">REVERSE</button>
+        <button id="button1" onmousedown="setButtonValue('Down')" onmouseup="setButtonValue('false')">DOWN</button>
+        <button id="button2" onmousedown="setButtonValue('In')" onmouseup="setButtonValue('false')">IN</button>
+        <button id="button3" onmousedown="setButtonValue('Out')" onmouseup="setButtonValue('false')">OUT</button>
+    </div>
+
+    <!-- Đặt mã JavaScript ở cuối trang để đảm bảo tất cả các phần tử đã được load -->
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyA43Hde625yMEu7q82kw4_ddHqwNigYvJQ",
+            authDomain: "conect-to-firebase.firebaseapp.com",
+            databaseURL: "https://conect-to-firebase-default-rtdb.firebaseio.com",
+            projectId: "conect-to-firebase",
+            storageBucket: "conect-to-firebase.appspot.com",
+            messagingSenderId: "557246254108",
+            appId: "1:557246254108:web:9dd705ba70c7da9427e3d9",
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Hàm để cập nhật giá trị và gửi lên Firebase
+        function setButtonValue(buttonId) {
+            var controlRef = firebase.database().ref("/Control");
+
+            // Đặt giá trị của trường tương ứng với nút được nhấn
+            var updates = {};
+            updates[buttonId] = "true";
+
+            // Cập nhật dữ liệu trên Firebase
+            controlRef.update(updates);
+
+            // Đặt các giá trị khác về "false"
+            var otherButtons = ['Up', 'Down', 'In', 'Out', 'Forward', 'Reverse'];
+            otherButtons.forEach(function (btn) {
+                if (btn !== buttonId) {
+                    updates[btn] = "false";
+                }
+            });
+
+            // Cập nhật các giá trị khác trên Firebase
+            controlRef.update(updates);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,11 +1,11 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyCcyTYOiNbPV1ZNYyZa9ASxsWT45zdhxaw",
-    authDomain: "myfireprowithcruds.firebaseapp.com",
-    databaseURL: "https://myfireprowithcruds-default-rtdb.firebaseio.com",
-    projectId: "myfireprowithcruds",
-    storageBucket: "myfireprowithcruds.appspot.com",
-    messagingSenderId: "269348572789",
-    appId: "1:269348572789:web:ac51f889c83b87289e323c",
+  apiKey: "AIzaSyA43Hde625yMEu7q82kw4_ddHqwNigYvJQ",
+  authDomain: "conect-to-firebase.firebaseapp.com",
+  databaseURL: "https://conect-to-firebase-default-rtdb.firebaseio.com",
+  projectId: "conect-to-firebase",
+  storageBucket: "conect-to-firebase.appspot.com",
+  messagingSenderId: "557246254108",
+  appId: "1:557246254108:web:9dd705ba70c7da9427e3d9",
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
@@ -40,12 +40,6 @@ var buttonValue = 0;
   function updateValue() {
     document.getElementById("valueBox").innerHTML = "Value: " + buttonValue;
   }
-
-
-
-
-
-
   
   // Khai báo biến mặc định cho toggleButton
 var toggleButtonValue = 0;
@@ -69,7 +63,7 @@ function setToggleButtonValue(value) {
 
   // Cập nhật giá trị trên Firebase
   firebase.database().ref("/Control").update({
-    "ToggleButton": toggleButtonValue
+    "Value": toggleButtonValue
   });
 }
 

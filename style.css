@@ -500,7 +500,7 @@ form button:hover {
     }
 
     .form-box .form-content {
-        padding: 30px 20px;
+        padding: 11px 40px;
     }
     .header-btn .sign-up{
         display: none;
@@ -510,7 +510,7 @@ form button:hover {
     }
 
     .text h1{
-        font-size: 4rem;
+        font-size: 2rem;
         letter-spacing: 2px;
     }
     .text span{
@@ -543,7 +543,7 @@ form button:hover {
     position: relative;
     background: url(img/backgroud_web.jpg);
     background-repeat: no-repeat;
-    background-position: center left;
+    background-position: center;
     background-size: cover;
     display: grid;
     align-items: center;
@@ -1004,3 +1004,4 @@ ul li a:hover{
     padding: 10px;
     font-size: 21px;
 }
+
