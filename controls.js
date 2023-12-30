@@ -29,14 +29,14 @@ $(document).ready(function () {
   
   firebase
     .database()
-    .ref("inout/")
+    .ref("InOut/")
     .set({
-      rollNo: rollV,
-      name: nameV,
+      location: rollV,
+      status: nameV,
     });
   alert("Data Inserted");
-  document.getElementById("roll").value = "";
-  document.getElementById("name").value = "";
+  document.getElementById("location").value = "";
+  document.getElementById("status").value = "";
   };
   
   document.getElementById("read").onclick = function () {
