@@ -478,7 +478,7 @@ form button:hover {
 
 }
 
-@media (max-width: 760px) {
+@media (max-width: 736px) {
     header{
         padding: 11px 40px;
     }
@@ -494,12 +494,7 @@ form button:hover {
     .form-popup {
         width: 95%;
     }
-
-    .login-btn {
-        margin-top: 20px;
-    }
     
-
     .form-box .form-details {
         display: none;
     }
@@ -510,9 +505,41 @@ form button:hover {
     .header-btn .sign-up{
         display: none;
     }
+    .login-btn {
+        position: relative;
+        top: 7px;
+    }
 
+    .services-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    .about-container .btn {
+        font-size: 10px; /* Điều chỉnh kích thước chữ */
+        padding: 6px 12px; /* Điều chỉnh kích thước của nút */
+    }
+
+
+    .reviews-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; /* Nếu muốn các phần tử xuống dòng khi không đủ chỗ */
+    }
+    
     .navbar .logo h2 {
         font-size: 1.4rem; 
+    }
+
+    .text {
+        margin-top: 300px;
+        margin-left: -40px;
+    }
+
+    .infor{
+        margin-top: 20px;
     }
 
     .text h1{
@@ -601,9 +628,12 @@ form button:hover {
 
       ul li {
         margin-left: -30px;
+
     }
-    
-    
+
+    .footer-col .connect{
+        margin-left: -20px;
+    }
 
 }
 

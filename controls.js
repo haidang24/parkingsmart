@@ -31,6 +31,12 @@ $(document).ready(function () {
     .database()
     .ref("Control/")
     .set({
+      Up: "false",
+      Down: "false",
+      In: "false",
+      Out: "false",
+      Forward: "false",
+      Reverse: "false",
       location: rollV,
       status: nameV,
     });
@@ -91,6 +97,8 @@ $(document).ready(function () {
     });
   });
   // Trong file script.js
+
+  
 
 
 

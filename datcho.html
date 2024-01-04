@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parking Reservation</title>
-    <link rel="Icon" href="img/Volkswagen_Logo_till_1995.svg.png">
     <!-- Thêm Bootstrap CSS (chỉ để trang trí) -->
+    <link rel="Icon" href="img/Volkswagen_Logo_till_1995.svg.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="hehehe.css">
 </head>
@@ -37,8 +37,16 @@
         <input type="text" id="Status" required><br>
 
         <button onclick="addHistoryData()">Reservations</button>
+        <button id="close">Close</button>
     </div>
 </div>
+
+<script>
+    document.getElementById("close").addEventListener("click", function() {
+        // Redirect to index.html when the "Close" button is clicked
+        window.location.href = "index.html";
+    });
+</script>
 
 <!-- Thêm Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
