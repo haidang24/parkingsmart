@@ -482,12 +482,6 @@ form button:hover {
     header{
         padding: 11px 40px;
     }
-
-    .box {
-        position: relative;
-        left: -30px; /* Điều chỉnh giá trị này để thay đổi khoảng cách sang trái */
-    }
-
     .text h1{
         font-size: 2.5rem;
     }
@@ -500,6 +494,11 @@ form button:hover {
     .form-popup {
         width: 95%;
     }
+
+    .login-btn {
+        margin-top: 20px;
+    }
+    
 
     .form-box .form-details {
         display: none;

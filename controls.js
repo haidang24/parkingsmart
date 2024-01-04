@@ -29,7 +29,7 @@ $(document).ready(function () {
   
   firebase
     .database()
-    .ref("InOut/")
+    .ref("Control/")
     .set({
       location: rollV,
       status: nameV,
