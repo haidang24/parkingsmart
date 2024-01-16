@@ -192,7 +192,7 @@ header{
     display: grid;
     align-items: center;
     grid-template-columns: repeat(2, 1fr);
-    margin-top: 40px;
+    margin-top: 60px;
 }
 
 .text h1{
@@ -237,6 +237,19 @@ header{
     border: 2px solid #fff;
     transform: translate(-50%, -70%);
     border-radius: 15px;
+}
+
+.username-display {
+    white-space: nowrap;
+    margin-top: -0.5rem;
+}
+
+.links li {
+    white-space: nowrap;
+}
+
+.hidden-link {
+    display: none;
 }
 
 .show-popup .form-popup {
@@ -515,6 +528,11 @@ form button:hover {
         justify-content: space-between;
     }
 
+    .username-display {
+        white-space: nowrap;
+        margin-top: 0.3rem;
+    }
+
 
     .about-container .btn {
         font-size: 10px; /* Điều chỉnh kích thước chữ */
@@ -633,6 +651,14 @@ form button:hover {
 
     .footer-col .connect{
         margin-left: -20px;
+    }
+
+    .btn {
+        font-size: 10px; /* hoặc bạn có thể sử dụng giá trị cụ thể như px, em, %, ... */
+    }
+
+    .about-text {
+        margin: 0 auto;
     }
 
 }

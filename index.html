@@ -23,18 +23,26 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#operate">Operate</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#choose parking slots">Choose Parking Slots</a></li>
+                <li><a href="#choose parking slots">Choose Slots</a></li>
                 <li><a href="#partner">Partner</a></li>
-                <li><a href="managerment.html">Manual Slots & Control</a></li>
-                <li><a href="history.html">History</a></li>
+                <li class="hidden-link"><a href="managerment.html">Control</a></li>
+                <li class="hidden-link"><a href="history.html">History</a></li>
                 <li><a href="#reviews">Reviews</a></li>
-                <li><a href="change.html">Managerment Slots</a></li>
+                <li class="hidden-link"><a href="change.html">Slots</a></li>
             </ul>
+            
             <button class="login-btn">Login</button>
+            <!-- Thêm một nút Logout ẩn đi ban đầu -->
+            <button class="login-btn" style="display: none;">Logout</button>
+
             <div class="header-btn">
                 <a href="#newletter" class="sign-up">Sign Up</a>
             </div>
+            <span class="username-display"></span>
+            
         </nav>
+
+
     </header>
 
     <section class="home" id="home">
@@ -179,7 +187,7 @@
         </div>
         <div class="about-container">
             <div class="about-img">
-                <img src="img/lambobg.png" alt="">
+                <img src="img/vw_2_sspj.jpg" alt="">
             </div>
             <div class="about-text">
                 <span>About Us</span>
@@ -198,7 +206,7 @@
         </div>
         <div class="about-container">
             <div class="about-img">
-                <img src="img/redbull_âbout.png" alt="">
+                <img src="img/vw1.jpg" alt="">
             </div>
             <div class="about-text">
                 <span>For you</span>
@@ -418,8 +426,35 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     const loginForm = document.querySelector('.form-box.login form');
+    const loginButton = document.querySelector('.login-btn');
+    const userAccounts = [
+        { email: 'admin@gmail.com', password: 'admin', name: 'ADMIN' },
+        { email: 'user@gmail.com', password: 'user', name: 'User' },
+        { email: 'Sinh@gmail.com', password: 'sinh', name: 'Sinh' },
+        { email: 'Tu@gmail.com', password: 'tu', name: 'Tú' },
+        { email: 'Huy@gmail.com', password: 'huy', name: 'Huy' },
+        // Các tài khoản khác...
+    ];
+
+    // Kiểm tra trạng thái đăng nhập khi trang được tải lại
+    const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    const usernameDisplay = document.querySelector('.username-display');
+
+    if (storedUser && usernameDisplay) {
+        const username = storedUser.name;
+        usernameDisplay.textContent = `Welcome, ${username}!`;
+
+        // Hiển thị nút Logout và ẩn nút Login
+        loginButton.textContent = 'LogOut';
+        loginButton.style.display = 'inline-block';
+
+        // Hiển thị các mục ẩn nếu đăng nhập với tài khoản ADMIN
+        if (storedUser.email === 'admin@gmail.com' && storedUser.password === 'admin') {
+            showHiddenLinks();
+        }
+    }
 
     loginForm.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -437,27 +472,20 @@
             return; // Stop further execution
         }
 
-        // Array of user accounts
-        const userAccounts = [
-            { email: 'admin@gmail.com', password: 'admin' },
-            { email: 'user@gmail.com', password: 'user' },
-            { email: 'anotheruser@gmail.com', password: 'anotherpassword' },
-            // Add more accounts as needed
-            { email: 'newuser1@gmail.com', password: 'newpassword1' },
-            { email: 'newuser2@gmail.com', password: 'newpassword2' }
-            // Add as many accounts as you want
-        ];
-
         // Check if the email and password match any user account
-        const isValidLogin = userAccounts.some(account => account.email === email && account.password === password);
+        const validUser = userAccounts.find(account => account.email === email && account.password === password);
 
-        if (isValidLogin) {
+        if (validUser) {
+            // Store user information in localStorage
+            localStorage.setItem('loggedInUser', JSON.stringify(validUser));
+
+            // Hiển thị mục ẩn khi đăng nhập với tài khoản ADMIN
+            if (validUser.email === 'admin@gmail.com' && validUser.password === 'admin') {
+                showHiddenLinks();
+            }
+
             // Redirect to index.html
             window.location.href = 'index.html';
-
-            // Clear input fields after successful login
-            emailInput.value = '';
-            passwordInput.value = '';
         } else {
             // Display an error message or handle invalid credentials
             alert('Invalid email or password. Please try again.');
@@ -467,6 +495,40 @@
             passwordInput.value = '';
         }
     });
+
+    // Xử lý sự kiện khi người dùng nhấp vào nút Logout
+    loginButton.addEventListener('click', function () {
+        // Xóa thông tin người dùng khỏi localStorage
+        localStorage.removeItem('loggedInUser');
+
+        // Ẩn nút Logout và hiển thị nút Login
+        loginButton.style.display = 'none';
+
+        // Hiển thị nút Login
+        document.querySelector('.login-btn').textContent = 'Login';
+
+        // Xóa thông điệp chào mừng
+        if (usernameDisplay) {
+            usernameDisplay.textContent = '';
+        }
+
+        // Ẩn các mục khi đăng xuất
+        hideHiddenLinks();
+    });
+
+    // Hàm ẩn mục
+    function hideHiddenLinks() {
+        document.querySelectorAll('.hidden-link').forEach(link => {
+            link.style.display = 'none';
+        });
+    }
+
+    // Hàm hiển thị mục
+    function showHiddenLinks() {
+        document.querySelectorAll('.hidden-link').forEach(link => {
+            link.style.display = 'block';
+        });
+    }
 });
 
     </script>
