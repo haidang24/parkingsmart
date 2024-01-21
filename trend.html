@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <!-- Thêm Bootstrap CSS (chỉ để trang trí) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="Icon" href="img/Volkswagen_Logo_till_1995.svg.png">
+</head>
+<body>
+
+<!-- Thêm Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<!-- Khởi tạo cấu hình Firebase -->
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyA43Hde625yMEu7q82kw4_ddHqwNigYvJQ",
+        authDomain: "conect-to-firebase.firebaseapp.com",
+        databaseURL: "https://conect-to-firebase-default-rtdb.firebaseio.com",
+        projectId: "conect-to-firebase",
+        storageBucket: "conect-to-firebase.appspot.com",
+        messagingSenderId: "557246254108",
+        appId: "1:557246254108:web:9dd705ba70c7da9427e3d9",
+    };
+
+    // Khởi tạo Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Lấy reference đến cơ sở dữ liệu
+    var database = firebase.database();
+</script>
+
+<!-- Thêm Bootstrap JS (chỉ để trang trí) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Thêm thư viện Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Thêm phần container cho biểu đồ -->
+<div class="container mt-3">
+    <!-- Biểu đồ cột -->
+    <h2 class="text-center text-danger">Data</h2>
+    <div>
+        <canvas id="barChart" width="400" height="200"></canvas>
+    </div>
+    <h2 class="text-center text-danger">Location Trend Chart</h2>
+    <button id="close">Close</button>
+</div>
+
+<script>
+    document.getElementById("close").addEventListener("click", function() {
+        // Redirect to index.html when the "Close" button is clicked
+        window.location.href = "index.html";
+    });
+</script>
+
+<!-- Script để vẽ biểu đồ -->
+<script>
+function drawBarChart() {
+    var historyRef = database.ref("History");
+
+    historyRef.once("value").then(function(snapshot) {
+        var historyData = snapshot.val();
+        var locationsCount = {};
+
+        for (var key in historyData) {
+            if (historyData.hasOwnProperty(key)) {
+                var record = historyData[key];
+                var location = record.Location;
+
+                // Kiểm tra nếu Location không rỗng
+                if (location !== "") {
+                    // Đếm số lần xuất hiện của mỗi Location
+                    if (locationsCount[location]) {
+                        locationsCount[location]++;
+                    } else {
+                        locationsCount[location] = 1;
+                    }
+                }
+            }
+        }
+
+        // Lọc các Location không rỗng
+        var nonEmptyLocations = Object.keys(locationsCount).filter(function(location) {
+            return location !== "";
+        });
+
+        // Tạo mảng counts tương ứng với các Location không rỗng
+        var counts = nonEmptyLocations.map(function(location) {
+            return locationsCount[location];
+        });
+
+        // Tìm chỉ số của cột có giá trị cao nhất
+        var maxIndex = counts.indexOf(Math.max(...counts));
+
+        // Tạo mảng màu sắc cho từng cột
+        var colors = nonEmptyLocations.map(function(_, index) {
+            return index === maxIndex ? '#ffac38' : '#ffac38';
+        });
+
+        // Vẽ biểu đồ cột
+        var ctx = document.getElementById("barChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: nonEmptyLocations,
+                datasets: [{
+                    label: 'Number of Location',
+                    data: counts,
+                    backgroundColor: colors,
+                    borderColor: colors.map(color => color.replace('0.2', '1')), // Đổi màu đường biên
+                    borderWidth: 1
+                }]
+            },
+            
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Count' // Chú thích cho trục tung
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Location' // Chú thích cho trục hoành
+                        }
+                    }
+                }
+            }
+        });
+    });
+}
+
+// Gọi hàm vẽ biểu đồ khi trang được tải
+drawBarChart();
+</script>
+
+</body>
+</html>
