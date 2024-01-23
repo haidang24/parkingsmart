@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <link rel="Icon" href="img/Volkswagen_Logo_till_1995.svg.png">
+    <!-- Thêm Bootstrap CSS (chỉ để trang trí) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-3">
+    <h2>History Data</h2>
+    <!-- Form để thêm mới dữ liệu lịch sử -->
+    <style>
+        h2 {
+        text-align: center;
+        color: #fe5b3d;
+    }
+    </style>
+    
+
+    <!-- Thêm input để nhập khoảng thời gian tìm kiếm -->
+    <div>
+        <label for="searchField">Search Field:</label>
+        <select id="searchField">
+            <option value="ID">ID</option>
+            <option value="LicensePlates">License Plates</option>
+            <option value="Location">Location</option>
+            <option value="Status">Status</option>
+            <option value="TimeIn">Time In</option>
+            <option value="TimeOut">Time Out</option>
+        </select>
+
+        <label for="searchValue">Search Value:</label>
+        <input type="text" id="searchValue">
+
+        <button onclick="searchHistoryData()">Search</button>
+        <button onclick="displayHistoryData()">Show All Data</button>
+        <button id="close">Close</button>
+    </div>
+
+    <!-- Bảng hiển thị dữ liệu -->
+    <table class="table table-dark">
+        <thead>
+            <th>STT</th>
+            <th>ID</th>
+            <th>License Plates</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Time In</th>
+            <th>Time Out</th>
+        </thead>
+        <tbody id="tbody1"></tbody>
+    </table>
+
+    <script>
+        document.getElementById("close").addEventListener("click", function() {
+            // Redirect to index.html when the "Close" button is clicked
+            window.location.href = "index.html";
+        });
+    </script>
+
+<!-- Thêm Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<!-- Khởi tạo cấu hình Firebase -->
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyA43Hde625yMEu7q82kw4_ddHqwNigYvJQ",
+            authDomain: "conect-to-firebase.firebaseapp.com",
+            databaseURL: "https://conect-to-firebase-default-rtdb.firebaseio.com",
+            projectId: "conect-to-firebase",
+            storageBucket: "conect-to-firebase.appspot.com",
+            messagingSenderId: "557246254108",
+            appId: "1:557246254108:web:9dd705ba70c7da9427e3d9",
+        };
+    // Khởi tạo Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Lấy reference đến cơ sở dữ liệu
+    var database = firebase.database();
+</script>
+
+<!-- Script để đọc và hiển thị dữ liệu lịch sử -->
+<script>
+    function displayHistoryData() {
+        var historyRef = database.ref("History");
+
+        historyRef.once("value").then(function(snapshot) {
+            var historyData = snapshot.val();
+            var displayData = document.getElementById("tbody1");
+
+            displayData.innerHTML = ""; // Clear previous data
+
+            var sno = 1;
+            for (var key in historyData) {
+                if (historyData.hasOwnProperty(key)) {
+                    var record = historyData[key];
+                    var row = "<tr><td>" + sno + "</td><td>" + record.ID + "</td><td>" + record.LicensePlates + "</td><td>" + record.Location + "</td><td>" + record.Status + "</td><td>" + record.TimeIn + "</td><td>" + record.TimeOut + "</td></tr>";
+                    displayData.innerHTML += row;
+                    sno++;
+                }
+            }
+        });
+    }
+
+    function addHistoryData() {
+        var ID = document.getElementById("ID").value;
+        var LicensePlates = document.getElementById("LicensePlates").value;
+        var Location = document.getElementById("Location").value;
+        var Status = document.getElementById("Status").value;
+        var TimeIn = document.getElementById("TimeIn").value;
+        var TimeOut = document.getElementById("TimeOut").value;
+
+        // Kiểm tra xem có giá trị nào trống không
+        if (!ID || !LicensePlates || !Location || !Status || !TimeIn || !TimeOut) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        // Format ngày tháng và giờ dưới dạng "DD/MM/YYYY h:mm:ss A"
+        var formattedTimeIn = formatDateTime(TimeIn);
+        var formattedTimeOut = formatDateTime(TimeOut);
+
+        // Lấy reference đến "History" trong cơ sở dữ liệu Firebase
+        var historyRef = database.ref("History");
+
+        // Tạo một key mới cho dữ liệu lịch sử
+        var newHistoryRef = historyRef.push();
+
+        // Ghi dữ liệu mới vào Firebase
+        newHistoryRef.set({
+            ID: ID,
+            LicensePlates: LicensePlates,
+            Location: Location,
+            Status: Status,
+            TimeIn: formattedTimeIn,
+            TimeOut: formattedTimeOut
+        });
+
+        // Hiển thị lại dữ liệu sau khi thêm mới
+        displayHistoryData();
+    }
+
+    // Hàm định dạng ngày tháng và giờ
+    function formatDateTime(dateTime) {
+        var date = new Date(dateTime);
+        var options = {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: true
+        };
+        return date.toLocaleDateString('en-GB', options);
+    }
+
+    function searchHistoryData() {
+    var searchField = document.getElementById("searchField").value;
+    var searchValueInput = document.getElementById("searchValue");
+    var searchValue = searchValueInput.value.toLowerCase().replace(/\s/g, ''); // Loại bỏ khoảng trắng
+
+    var historyRef = database.ref("History");
+
+    historyRef.once("value").then(function(snapshot) {
+        var historyData = snapshot.val();
+        var displayData = document.getElementById("tbody1");
+
+        displayData.innerHTML = ""; // Clear previous data
+
+        var sno = 1;
+        for (var key in historyData) {
+            if (historyData.hasOwnProperty(key)) {
+                var record = historyData[key];
+
+                // Kiểm tra giá trị tìm kiếm và hiển thị dữ liệu chỉ khi giá trị trùng khớp
+                var formattedValue = record[searchField].toLowerCase().replace(/\s/g, ''); // Loại bỏ khoảng trắng
+                if (formattedValue.includes(searchValue)) {
+                    var row = "<tr><td>" + sno + "</td><td>" + record.ID + "</td><td>" + record.LicensePlates + "</td><td>" + record.Location + "</td><td>" + record.Status + "</td><td>" + record.TimeIn + "</td><td>" + record.TimeOut + "</td></tr>";
+                    displayData.innerHTML += row;
+                    sno++;
+                }
+            }
+        }
+
+        // Xóa dữ liệu trong ô "Search Value"
+        searchValueInput.value = "";
+    });
+}
+
+    // Hiển thị lịch sử khi trang được tải
+    displayHistoryData();
+</script>
+
+
+
+<!-- Thêm Bootstrap JS (chỉ để trang trí) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

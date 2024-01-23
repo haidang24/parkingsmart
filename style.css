@@ -1,0 +1,1077 @@
+/* Importing Google font - Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;700;800;900&family=Roboto:ital,wght@0,100;1,300;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Open Sans", sans-serif;
+}
+
+:root{
+    --main-color: #fe5b3d;
+    --second-color: #ffac38;
+    --text-color: #444;
+    --gradient: linear-gradient(#fe5b3d,#ffac38);
+}
+
+html::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 5rem;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    padding: 0 10px;
+}
+
+.navbar {
+    display: flex;
+    padding: 18px 0;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.navbar .hamburger-btn {
+    display: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.navbar .logo {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navbar .logo img {
+    width: 40px;
+    margin-right: 50px;
+    border-radius: 50%;
+}
+
+.navbar .logo h2 {
+    color: black;
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+    align-items: center;
+}
+
+.navbar .close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: none;
+    color: #000;
+    cursor: pointer;
+}
+
+/* Màu mặc định của liên kết trong thanh điều hướng */
+.navbar .links a {
+    color: #000; /* Màu mặc định của liên kết */
+    text-decoration: none; /* Loại bỏ gạch chân mặc định */
+    position: relative; /* Đặt vị trí tương đối để cho phép vị trí tuyệt đối cho pseudo-element */
+    font-size: 18px;
+}
+
+/* Hiệu ứng gạch chân khi chuột rê qua */
+
+
+/* Tạo hiệu ứng gạch chân với pseudo-element ::after */
+.navbar .links a::after {
+    content: ""; /* Nội dung trống để tạo pseudo-element */
+    position: absolute; /* Đặt vị trí tuyệt đối */
+    left: 0; /* Đặt vị trí bắt đầu từ góc trái */
+    right: 0; /* Đặt vị trí kết thúc ở góc phải */
+    bottom: -2px; /* Dịch pseudo-element xuống dưới một chút để tạo hiệu ứng */
+    height: 2px; /* Độ dày của pseudo-element, tạo thành hiệu ứng gạch chân */
+    background-color: var(--main-color); /* Màu của gạch chân */
+    visibility: hidden; /* Ẩn pseudo-element khi không được kích hoạt */
+    transform: scaleX(0); /* Thu nhỏ chiều rộng của pseudo-element để bắt đầu */
+    transition: transform 0.3s ease-in-out; /* Áp dụng hiệu ứng chuyển động với thời gian 0.3 giây */
+}
+
+/* Hiệu ứng gạch chân khi chuột rê qua */
+.navbar .links a:hover::after {
+    visibility: visible; /* Hiển thị pseudo-element khi chuột rê qua */
+    transform: scaleX(1); /* Mở rộng chiều rộng của pseudo-element khi chuột rê qua */
+}
+
+
+.navbar .login-btn {
+    border: none;
+    outline: none;
+    background: #fff;
+    margin-left: 30px;
+    color: var(--main-color);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 0.15s ease;
+    margin-top: -13px;
+}
+
+.navbar .login-btn:hover {
+    background: var(--main-color);
+    color: #eeeff1;
+}
+
+.header-btn a{
+    padding: 10px 18px;
+    color: var(--text-color);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.header-btn .sign-up {
+    color: black;
+    margin-top: -10px; /* Điều chỉnh giảm khoảng cách lên trên */
+    display: inline-block; /* Để áp dụng margin-top, cần chuyển đổi thành inline-block hoặc block */
+}
+
+
+.header-btn .sign-up:hover{
+    color: var(--main-color);
+}
+
+section{
+    padding: 50px 100px;
+}
+header{
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #eeeff1;
+    padding: 15px 100px;
+}
+
+.home {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background: url(img/backgroud_web.jpg);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 60px;
+}
+
+.text h1{
+    font-size: 5rem;
+    letter-spacing: 2px;
+}
+.text span{
+    color: var(--main-color);
+}
+.text p{
+    margin: 0.5rem 0 1rem;
+}
+.app-stores{
+    display: flex;
+}
+.app-stores img{
+    width: 150px;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+.infor {
+    margin-top: 10px;
+    font-size: 20px;
+}
+.infor h3 {
+    color: var(--main-color); /* Thay "#your_color" bằng mã màu bạn muốn sử dụng */
+}
+.infor p{
+    color: black;
+}
+
+.form-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    max-width: 720px;
+    background: #fff;
+    border: 2px solid #fff;
+    transform: translate(-50%, -70%);
+    border-radius: 15px;
+}
+
+.username-display {
+    white-space: nowrap;
+    margin-top: -0.5rem;
+}
+
+.links li {
+    white-space: nowrap;
+}
+
+.hidden-link {
+    display: none;
+}
+
+.show-popup .form-popup {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease, opacity 0.1s;
+}
+
+.form-popup .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #878484;
+    cursor: pointer;
+}
+
+.blur-bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: 0.1s ease;
+}
+
+.show-popup .blur-bg-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.form-popup .form-box {
+    display: flex;
+}
+
+.form-box .form-details {
+    width: 100%;
+    color: #fff;
+    max-width: 330px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.login .form-details {
+    padding: 0 40px;
+    background: url("img/login15.jpg");
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
+}
+
+.signup .form-details {
+    padding: 0 20px;
+    background: url("img/crea1.jpg");
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px;
+}
+
+.form-box .form-content {
+    width: 100%;
+    padding: 35px;
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 29px;
+}
+
+form .input-field {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.input-field input {
+    height: 100%;
+    width: 100%;
+    background: none;
+    outline: none;
+    font-size: 0.95rem;
+    padding: 0 15px;
+    border: 1px solid #717171;
+    border-radius: 5px;
+}
+
+.input-field input:focus {
+    border: 1px solid var(--main-color);
+}
+
+.input-field label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #4a4646;
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) {
+    padding: 16px 15px 0;
+}
+
+.input-field input:is(:focus, :valid)~label {
+    transform: translateY(-120%);
+    color: var(--main-color);
+    font-size: 0.75rem;
+}
+
+.form-box a {
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+.form-box a:hover {
+    text-decoration: underline;
+}
+
+form :where(.forgot-pass-link, .policy-text) {
+    display: inline-flex;
+    margin-top: 13px;
+    font-size: 0.95rem;
+}
+
+form button {
+    width: 100%;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 14px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 25px 0;
+    background: var(--main-color);
+    transition: 0.2s ease;
+}
+
+form button:hover {
+    background: #0097a7;
+}
+
+.form-content .bottom-link {
+    text-align: center;
+}
+
+.form-popup .signup,
+.form-popup.show-signup .login {
+    display: none;
+}
+
+.form-popup.show-signup .signup {
+    display: flex;
+}
+
+.signup .policy-text {
+    display: flex;
+    margin-top: 14px;
+    align-items: center;
+}
+
+.signup .policy-text input {
+    width: 14px;
+    height: 14px;
+    margin-right: 7px;
+}
+
+@media (max-width: 950px) {
+    .navbar :is(.hamburger-btn, .close-btn) {
+        display: block;
+    }
+
+    .navbar {
+        padding: 10px 0px;
+    }
+
+    .navbar .logo img {
+        display: none;
+    }
+
+    .navbar .logo h2 {
+        font-size: 1.4rem;
+    }
+
+    .navbar h2 {
+        display: none;
+    }
+
+    .navbar .links {
+        position: fixed;
+        top: 0;
+        z-index: 10;
+        left: -100%;
+        display: block;
+        height: 100vh;
+        width: 100%;
+        padding-top: 60px;
+        text-align: center;
+        background: #fff;
+        transition: 0.2s ease;
+    }
+
+    .navbar .links.show-menu {
+        left: 0;
+    }
+
+
+    .navbar .links a {
+        display: inline-flex;
+        margin: 20px 70px;
+        font-size: 1.2rem;
+        color: #000;
+    }
+
+    .navbar .login-btn {
+        font-size: 0.9rem;
+        padding: 7px 10px;
+        margin-left: 250px;
+    }
+
+    .header-btn a{
+        font-size: 0.9rem;
+        padding: 7px 10px;
+        font-weight: bold;
+    }
+
+
+}
+
+@media (max-width: 736px) {
+    header{
+        padding: 11px 40px;
+    }
+    .text h1{
+        font-size: 2.5rem;
+    }
+    .home{
+        grid-template-columns: 1fr;    
+    }
+    .form-container form{
+        position: unset;
+    }
+    .form-popup {
+        width: 95%;
+    }
+    
+    .form-box .form-details {
+        display: none;
+    }
+
+    .form-box .form-content {
+        padding: 11px 40px;
+    }
+    .header-btn .sign-up{
+        display: none;
+    }
+    .login-btn {
+        position: relative;
+        top: 7px;
+    }
+
+    .services-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .username-display {
+        white-space: nowrap;
+        margin-top: 0.3rem;
+    }
+
+
+    .about-container .btn {
+        font-size: 10px; /* Điều chỉnh kích thước chữ */
+        padding: 6px 12px; /* Điều chỉnh kích thước của nút */
+    }
+
+
+    .reviews-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; /* Nếu muốn các phần tử xuống dòng khi không đủ chỗ */
+    }
+    
+    .navbar .logo h2 {
+        font-size: 1.4rem; 
+    }
+
+    .text {
+        margin-top: 300px;
+        margin-left: -40px;
+    }
+
+    .infor{
+        margin-top: 20px;
+    }
+
+    .text h1{
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+    .text span{
+        color: var(--main-color);
+    }
+    .text p{
+        margin: 0.5rem 0 0.5rem;
+    }
+    .app-stores{
+        display: flex;
+    }
+    .app-stores img{
+        width: 100px;
+        margin-right: 1rem;
+        cursor: pointer;
+    }
+    .infor {
+        margin-top: 8px;
+        font-size: 16px;
+    }
+    .infor h3 {
+        color: var(--main-color); /* Thay "#your_color" bằng mã màu bạn muốn sử dụng */
+    }
+    .infor p{
+        color: black;
+    }
+    .home{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background: url(img/backgroud_web.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 20px;
+    }
+    header{
+        width: 100%;
+        background: url(img/mer8.png);
+        background-position: center;
+        background-size: cover;
+        align-items: center;
+    }
+    body {
+        overflow-x: hidden; /* Ngăn chặn cuộn theo chiều ngang ở body */
+    }
+    
+    .container {
+        width: 100%; /* Chiều rộng của container */
+        white-space: nowrap; /* Ngăn ngừa quấn dòng nội dung xuống dòng mới */
+        overflow-x: auto; /* Cho phép cuộn theo chiều ngang khi nội dung vượt quá chiều rộng */
+    }
+    
+    /* Thêm nội dung ví dụ */
+    .content {
+        width: 2000px; /* Chiều rộng lớn hơn container để tạo điều kiện cuộn */
+        height: 100px;
+        background-color: #f0f0f0;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .form input {
+        margin-bottom: 0px; /* Khoảng cách giữa các input */
+        text-align: center;
+        margin-left: 10px;
+        width: 200px; /* Đặt kích thước chiều ngang */
+        height: 30px; /* Đặt kích thước chiều dọc */
+      }
+
+      .moving-image {
+        display: none;
+      }
+
+
+      ul li {
+        margin-left: -30px;
+
+    }
+
+    .footer-col .connect{
+        margin-left: -20px;
+    }
+
+    .btn {
+        font-size: 10px; /* hoặc bạn có thể sử dụng giá trị cụ thể như px, em, %, ... */
+    }
+
+    .about-text {
+        margin: 0 auto;
+    }
+
+}
+
+@media(max-width:563px){
+    .copyright{
+        flex-direction: column;
+    }
+    .newletter .box {
+        width: 284px;
+    }
+}
+
+.ride-container{
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit,minmax(250px,auto));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.ride-container .box{
+    text-align: center;
+    padding: 20px;
+}
+.ride-container .box .bx{
+    font-size: 34px;
+    padding: 10px;
+    background: #eeeff1;
+    border-radius: 0.5rem;
+    color: var(--main-color);
+}
+.ride-container .box h2{
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 1.4rem 0 0.5rem;
+}
+.ride-container .box .bx:hover, .ride-container .bx .bx-calendar-star{
+    background: var(--gradient);
+    color: #fff;
+}
+
+.heading{
+    text-align: center;
+}
+.heading span{
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.heading h1 {
+    font-size: 2rem;
+}
+
+.services-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,auto));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.services-container .box{
+    padding: 10px;
+    border-radius: 1rem;
+    box-shadow: 1px 4px 41px rgba(0, 0, 0, 0.1);
+
+}
+.services-container .box .box-img{
+    width: 100%;
+    height: 200px;
+}
+.services-container .box .box-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+    object-position: center;
+}
+.services-container .box p{
+    padding: 0 10px;
+    border: 1px solid var(--text-color);
+    width: 58px;
+    border-radius: 0.5rem;
+    margin: 1rem 0 1 rem;
+}
+.services-container .box h3{
+    font-weight: 500;
+}
+.services-container .box h2{
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--main-color);
+    margin: 0.2rem 0 0.5rem;
+}
+
+.services-container .box h2 span{
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+.services-container .box .btn{
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+    background: #474fa0;
+    color: #fff;
+    padding: 10px;
+    border-radius: 0.5rem;
+    text-decoration: none;
+}
+.services-container .box .btn:hover{
+    background: var(--main-color);
+}
+
+.about-container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin-top: 2rem;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 10px 0;
+}
+.about-img img{
+    width: 100%;
+}
+.about-text span{
+    font-weight: 500;
+    color: var(--main-color);
+    text-transform: uppercase;
+}
+.about-text p{
+    margin: 0.5rem 0 1.4rem;
+    font-size: 20px;
+}
+.about-text .btn{
+    padding: 10px 20px;
+    background: #474fa0;
+    color: #fff;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+.about-text .btn:hover{
+    background: var(--main-color);
+}
+
+
+.reviews-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,auto));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.reviews-img{
+   width: 70px; 
+   height: 70px;
+}
+.reviews-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid var(--second-color);
+}
+.reviews-container .box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 1px 4px 41px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+}
+.reviews-container .box h2{
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0.5rem 0 o.5rem;
+}
+.reviews-container .box p{
+    font-style: italic;
+}
+.reviews-container .box .star .bx{
+    color: var(--main-color);
+}
+
+footer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: auto;
+    background-color: #fff;
+    padding: 60px 10%;
+    justify-content: space-around;
+}
+li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+footer {
+    background-color: #fff; /* Màu nền của footer, thay đổi theo nhu cầu của bạn */
+    color: #fff; /* Màu chữ của footer, thay đổi theo nhu cầu của bạn */
+    padding: 30px 0; /* Khoảng cách giữa nội dung của footer và biên ngoài */
+}
+.footer-col{
+    width: 25%;
+}
+
+.footer-col li img {
+    width: 70px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.footer-col ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Khoảng cách giữa các mục trong danh sách */
+}
+
+.footer-col ul li img {
+    margin-right: 15px; /* Khoảng cách giữa ảnh và chữ */
+    max-width: 50px; /* Giới hạn chiều rộng tối đa của ảnh */
+}
+
+.footer-col ul li a {
+    text-decoration: none; /* Loại bỏ gạch chân của liên kết */
+    color: #333; /* Màu của văn bản liên kết */
+}
+
+
+.footer-col h3{
+    position: relative;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--text-color);
+    text-transform: capitalize;
+}
+
+
+.footer-col h3:hover{
+    color: var(--main-color);
+    padding-left: 10px;
+    transition: 0.5s;
+}
+
+
+.footer-col h3::before {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Đặt vị trí bên dưới văn bản để tạo hiệu ứng gạch chân bên trái */
+    left: 50%; /* Đặt vị trí ở giữa theo chiều ngang */
+    transform: translateX(-50%); /* Dịch chuyển lên 50% của chiều rộng của phần tử cha */
+    width: 0;
+    height: 2px; /* Chiều cao của gạch chân */
+    background-color: transparent; /* Màu của gạch chân khi không rê chuột qua */
+    transition: width 0.3s, background-color 0.3s; /* Thêm hiệu ứng chuyển động */
+}
+
+.footer-col h3:hover::before {
+    width: 60%; /* Hiển thị 100% chiều rộng khi rê chuột qua */
+    background-color: var(--main-color); /* Màu của gạch chân khi rê chuột qua */
+}
+
+
+.footer-col .connect a {
+    color: #333; /* Màu mặc định của biểu tượng */
+    transition: color 0.3s; /* Thêm hiệu ứng chuyển động cho màu chữ */
+}
+
+.footer-col .connect a:hover {
+    color: var(--main-color); /* Màu khi rê chuột qua */
+}
+
+ul li:not(:last-child){
+    margin-bottom: 8px;
+}
+
+ul li a{
+    display: block;
+    font-size: 22px;
+    text-transform: capitalize;
+    color: #444;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+ul li a:hover{
+    color: var(--main-color);
+}
+
+.footer .links a{
+    display: inline-block;
+    height: 44px;
+    width: 44px;
+    color: white;
+    background-color: rgba(40, 130, 214, 0.8);
+    margin: 0 8px 8px 0;
+    text-align: center;
+    line-height: 44px;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+.footer .links a:hover{
+    color: #4d4f55;
+    background-color: white;
+}
+
+.connect a{
+    color: var(--text-color);
+    padding: 10px;
+    font-size: 25px;
+    display: inline-block;
+    margin-left: 20px;
+    
+}
+
+.contact-info {
+    color: black;
+    font-size: 18px;
+    margin-bottom: 70px;
+    margin-right: 70px; /* Khoảng cách phải */
+    text-align: left;
+}
+
+.infor {
+    margin-top: 50px;
+    font-size: 24px;
+}
+
+
+.infor h3 {
+    color: var(--main-color); /* Thay "#your_color" bằng mã màu bạn muốn sử dụng */
+}
+
+@media (max-width: 768px) {
+    footer {
+        display: flex;
+        flex-direction: column; /* Đặt hướng chuyển thành cột */
+        align-items: center; /* Căn giữa theo chiều ngang */
+    }
+}
+
+@media (max-width: 576px) {
+    footer {
+        display: flex;
+        flex-direction: column; /* Đặt hướng chuyển thành cột */
+        align-items: center; /* Căn giữa theo chiều ngang */
+    }
+    .footer .links a{
+        display: flex;
+        height: 44px;
+        width: 44px;
+        color: white;
+        background-color: rgba(40, 130, 214, 0.8);
+        margin: 0 8px 8px 0;
+        text-align: center;
+        line-height: 44px;
+        border-radius: 50%;
+        transition: 0.4s;
+    }
+
+}
+
+.newletter{
+    background: linear-gradient(to top right, #fe5b3d, #ffac38);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.newletter h2{
+    color: #fff;
+    font-size: 1.8rem;
+}
+.newletter .box{
+    margin-top: 1rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    padding: 4px 8px;
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+.newletter .box input{
+    border: none;
+    outline: none;
+}
+.newletter .box .btn{
+    background: #474fa0;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 0.5rem;
+    text-decoration: none;
+}
+
+.newletter .box .btn:hover{
+    background: var(--main-color);
+}
+.copyright{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.social a{
+    color: #444;
+    padding: 10px;
+    font-size: 21px;
+}
+

@@ -1,0 +1,204 @@
+
+
+:root{
+    --main-color: #fe5b3d;
+    --second-color: #ffac38;
+    --text-color: #444;
+    --gradient: linear-gradient(#fe5b3d,#ffac38);
+}
+
+#btnOnId_01,
+  #btnOffId_01 {
+    display: none;
+  }
+
+  .heading{
+    text-align: center;   
+}
+.heading span{
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.heading h1{
+    font-size: 2rem;
+}
+
+html::-webkit-scrollbar{
+    width: 0.5rem;
+}
+html::-webkit-scrollbar-track{
+    background: transparent;
+}
+html::-webkit-scrollbar-thumb{
+    background: var(--main-color);
+    border-radius: 5rem;
+}
+
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Khoảng cách giữa các nút */
+  }
+
+  /* Button styles */
+  button {
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Màu nền */
+    color: white; /* Màu chữ */
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+
+  .buttons {
+    text-align: center; /* Căn giữa theo chiều ngang */
+    margin-top: 20px; /* Khoảng cách từ trên xuống */
+  }
+  
+  #close {
+    background-color: #f44336; /* Màu nền đỏ */
+    color: white; /* Màu chữ trắng */
+    padding: 10px 20px; /* Kích thước đệm (padding) của nút */
+    font-size: 16px; /* Kích thước chữ */
+    border: none; /* Không có đường viền */
+    border-radius: 5px; /* Độ cong góc */
+    cursor: pointer; /* Con trỏ chuột khi di chuyển qua nút */
+  }
+  
+  #close:hover {
+    background-color: #d32f2f; /* Màu nền đỏ đậm khi di chuột qua */
+  }
+
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Chiều cao toàn bộ màn hình */
+    margin: 0; /* Loại bỏ margin mặc định của body */
+    text-align: center;
+    background: url(img/backgroud_web.jpg);
+    background-size: cover;
+  }
+  
+  .buttons {
+    text-align: center;
+  }
+
+
+  button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #4CAF50; /* Màu nền mặc định */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi màu nền */
+  }
+  
+  button:hover {
+    background-color: var(--main-color); /* Màu nền khi hover */
+  }
+  
+
+
+
+  
+  #close {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 500px;
+  }
+  
+  #close:hover {
+    background-color: #d32f2f;
+  }
+
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 10px 10px;
+    margin: 10px;
+  }
+  
+  @media (max-width: 760px) {
+    div {
+      flex-direction: column;
+      align-items: center;
+    }
+    .home .text h1 {
+      color: var(--main-color); /* Màu chữ mặc định */
+      font-weight: bold;
+      left: -30px;
+    }
+  
+    .home .text h1 span {
+      position: relative;
+      top: 50px;
+      left: 180px;
+    }
+    .heading span{
+        display: none;
+    }
+
+    .heading h1 {
+        color: black; /* Màu chữ mặc định */
+        font-size: 30px;
+        margin-left: -70px;
+    }
+    #close{
+        margin-right: 30px;
+    }
+
+
+
+  }
+  
+
+  /* Thay đổi màu chữ của phần tử trong phần "home" */
+.home .text p,
+.heading h1 {
+  color: black; /* Màu chữ mặc định */
+}
+
+/* Thay đổi màu chữ của phần tử trong phần "heading" */
+
+.heading span,
+.home .text h1 span,
+.home .text h1 {
+  color: var(--main-color); /* Màu chữ mặc định */
+  font-size: 20px;
+}
+
+.home .text h1 span {
+     position: relative;
+  top: -300px; /* Điều chỉnh giảm khoảng cách lên trên */
+  right: -670px; /* Điều chỉnh tăng khoảng cách sang phải */
+  font-size: 40px;
+}
+
+
+
+
+
+
+
+  
+  
+
+  
