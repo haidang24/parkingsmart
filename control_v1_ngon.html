@@ -134,5 +134,50 @@
         }
     </script>
 
+
+<script>
+    function continuouslySendDataToFirebase() {
+        setInterval(function() {
+            var historyRef = database.ref("History");
+    
+            historyRef.once("value").then(function(snapshot) {
+                var historyData = snapshot.val();
+    
+                if (historyData) {
+                    var locationsCount = {};
+    
+                    for (var key in historyData) {
+                        if (historyData.hasOwnProperty(key)) {
+                            var record = historyData[key];
+                            var location = record.Location;
+    
+                            if (location !== "Location") {
+                                if (locationsCount[location]) {
+                                    locationsCount[location]++;
+                                } else {
+                                    locationsCount[location] = 1;
+                                }
+                            }
+                        }
+                    }
+    
+                    var countRef = database.ref("SoLuong");
+    
+                    // Gửi dữ liệu lên Firebase với các trường con dạng "Location1: 5", "Location2: 5", v.v.
+                    for (var loc in locationsCount) {
+                        var locCountRef = countRef.child("Location" + loc);
+                        locCountRef.set(locationsCount[loc]);
+                    }
+    
+                    console.log("Dữ liệu đã được gửi lên Firebase thành công!");
+                } else {
+                    console.log("Không có dữ liệu từ Firebase.");
+                }
+            });
+        }, 50);
+    }
+    
+    continuouslySendDataToFirebase();
+</script>
 </body>
 </html>
