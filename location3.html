@@ -176,6 +176,30 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 
+
+<!-- Thêm Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<!-- Khởi tạo cấu hình Firebase -->
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyA43Hde625yMEu7q82kw4_ddHqwNigYvJQ",
+        authDomain: "conect-to-firebase.firebaseapp.com",
+        databaseURL: "https://conect-to-firebase-default-rtdb.firebaseio.com",
+        projectId: "conect-to-firebase",
+        storageBucket: "conect-to-firebase.appspot.com",
+        messagingSenderId: "557246254108",
+        appId: "1:557246254108:web:9dd705ba70c7da9427e3d9",
+    };
+
+    // Khởi tạo Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Lấy reference đến cơ sở dữ liệu
+    var database = firebase.database();
+</script>
+
 <script>
     function continuouslySendDataToFirebase() {
         setInterval(function() {

@@ -6,6 +6,8 @@ const formPopup = document.querySelector(".form-popup");
 const hidePopupBtn = formPopup.querySelector(".close-btn");
 const signupLoginLink = formPopup.querySelectorAll(".bottom-link a");
 
+
+
 // Show mobile menu
 hamburgerBtn.addEventListener("click", () => {
     navbarMenu.classList.toggle("show-menu");
