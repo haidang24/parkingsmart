@@ -576,7 +576,7 @@ form button:hover {
         display: flex;
     }
     .app-stores img{
-        width: 100px;
+        width: 70px;
         margin-right: 1rem;
         cursor: pointer;
     }
@@ -899,8 +899,8 @@ form button:hover {
     margin-top: 2rem;
 }
 .reviews-img{
-   width: 70px; 
-   height: 70px;
+   width: 130px; 
+   height: 130px;
 }
 .reviews-img img{
     width: 100%;
